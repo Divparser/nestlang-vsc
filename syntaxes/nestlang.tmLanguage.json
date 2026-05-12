@@ -1,0 +1,55 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Nestlang",
+  "scopeName": "source.nsl",
+  "fileTypes": ["nsl"],
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#child-field" },
+    { "include": "#top-level-field" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.number-sign.nsl",
+      "match": "#.*$"
+    },
+    "type": {
+      "patterns": [
+        {
+          "name": "support.type.nsl",
+          "match": "\\((array:object|array:string|array:number|array:boolean|array:url|array:object|array|object|string|number|boolean|url|datetime:[A-Za-z0-9\\-]+|datetime)\\)"
+        }
+      ]
+    },
+    "field-name": {
+      "name": "variable.other.nsl",
+      "match": "[A-Za-z][A-Za-z0-9_\\-]*"
+    },
+    "description": {
+      "name": "string.unquoted.nsl",
+      "match": "[^()\\n]+"
+    },
+    "top-level-field": {
+      "name": "meta.field.top-level.nsl",
+      "match": "^([A-Za-z][A-Za-z0-9_\\-]*)(:)\\s*([^(\\n]+)?\\s*(\\([^)]+\\))?",
+      "captures": {
+        "1": { "name": "entity.name.field.nsl" },
+        "2": { "name": "punctuation.separator.nsl" },
+        "3": { "name": "string.unquoted.description.nsl" },
+        "4": { "name": "support.type.nsl" }
+      }
+    },
+    "child-field": {
+      "name": "meta.field.child.nsl",
+      "match": "^(\\s+)(-)([A-Za-z][A-Za-z0-9_\\-]*)(:)\\s*([^(\\n]+)?\\s*(\\([^)]+\\))?",
+      "captures": {
+        "1": { "name": "punctuation.whitespace.nsl" },
+        "2": { "name": "punctuation.definition.field.nsl" },
+        "3": { "name": "variable.other.field.nsl" },
+        "4": { "name": "punctuation.separator.nsl" },
+        "5": { "name": "string.unquoted.description.nsl" },
+        "6": { "name": "support.type.nsl" }
+      }
+    }
+  }
+}

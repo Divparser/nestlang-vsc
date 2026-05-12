@@ -1,0 +1,59 @@
+{
+  "name": "nestlang",
+  "displayName": "Nestlang",
+  "description": "Syntax highlighting, intellisense and snippets for Nestlang — the typed schema language for DivParser",
+  "version": "1.0.0",
+  "publisher": "divparser",
+  "icon": "icons/nestlang-icon.png",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "nestlang",
+    "divparser",
+    "web scraping",
+    "data extraction",
+    "schema"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/divparser/nestlang-vscode"
+  },
+  "homepage": "https://divparser.com/docs?p=Nestlang",
+  "bugs": {
+    "url": "https://github.com/divparser/nestlang-vscode/issues"
+  },
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "nestlang",
+        "aliases": ["Nestlang", "nsl"],
+        "extensions": [".nsl"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/nestlang-icon.png",
+          "dark": "./icons/nestlang-icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nestlang",
+        "scopeName": "source.nsl",
+        "path": "./syntaxes/nestlang.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "nestlang",
+        "path": "./snippets/nestlang.json"
+      }
+    ]
+  }
+}

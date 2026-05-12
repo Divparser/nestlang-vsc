@@ -1,0 +1,68 @@
+{
+  "Listing Schema": {
+    "prefix": "nsl-listing",
+    "body": [
+      "${1:items}: ${2:all items on the page} (array:object)",
+      "  -${3:name}: ${4:Item name} (string)",
+      "  -${5:price}: ${6:Item price} (number)",
+      "  -${7:url}: ${8:Item URL} (url)"
+    ],
+    "description": "Nestlang listing schema"
+  },
+  "Detail Schema": {
+    "prefix": "nsl-detail",
+    "body": [
+      "${1:item}: ${2:the main item on the page} (object)",
+      "  -${3:name}: ${4:Item name} (string)",
+      "  -${5:price}: ${6:Item price} (number)",
+      "  -${7:description}: ${8:Item description} (string)"
+    ],
+    "description": "Nestlang detail page schema"
+  },
+  "Field": {
+    "prefix": "nsl-field",
+    "body": [
+      "${1:fieldname}: ${2:description} (${3|string,number,boolean,url,datetime,array,array:object,array:string,array:number,array:url,object|})"
+    ],
+    "description": "Single Nestlang field"
+  },
+  "Child Field": {
+    "prefix": "nsl-child",
+    "body": [
+      "  -${1:fieldname}: ${2:description} (${3|string,number,boolean,url,datetime,array,array:object,array:string,array:number,array:url,object|})"
+    ],
+    "description": "Child field"
+  },
+  "Pagination Schema": {
+    "prefix": "nsl-pagination",
+    "body": [
+      "pagination: pagination info (object)",
+      "  -current_page: Current page number (number)",
+      "  -total_pages: Total number of pages (number)",
+      "  -next_url: URL of the next page (url)"
+    ],
+    "description": "Pagination schema block"
+  },
+  "Full Page Schema": {
+    "prefix": "nsl-full",
+    "body": [
+      "# ${1:Page description}",
+      "",
+      "${2:items}: ${3:all items on the page} (array:object)",
+      "  -${4:name}: ${5:Item name} (string)",
+      "  -${6:price}: ${7:Item price} (number)",
+      "  -${8:url}: ${9:Item URL} (url)",
+      "",
+      "pagination: pagination info (object)",
+      "  -current_page: Current page number (number)",
+      "  -total_pages: Total number of pages (number)",
+      "  -next_url: URL of the next page (url)"
+    ],
+    "description": "Full page Nestlang schema with pagination"
+  },
+  "Comment": {
+    "prefix": "nsl-comment",
+    "body": ["# ${1:comment}"],
+    "description": "Nestlang comment"
+  }
+}

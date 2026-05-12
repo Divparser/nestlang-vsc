@@ -1,0 +1,28 @@
+# Product listing page schema
+
+products: all products on the page (array:object)
+  -name: Product name (string)
+  -price: Product price (number)
+  -in_stock: Whether the product is available (boolean)
+  -rating: Average rating out of 5 (number)
+  -images: Product image URLs (array:url)
+  -variants: Available variants (array:object)
+    -size: Size label (string)
+    -color: Color name (string)
+    -available: Whether this variant is in stock (boolean)
+
+pagination: pagination info (object)
+  -current_page: Current page number (number)
+  -total_pages: Total number of pages (number)
+  -next_url: Next page URL (url)
+
+# Job listing page schema
+
+jobs: all job listings on the page (array:object)
+  -title: Job title (string)
+  -company: Company name (string)
+  -location: Job location (string)
+  -salary: Salary range if available (string)
+  -posted_at: Date the job was posted (datetime:Y-M-D)
+  -remote: Whether the job is remote (boolean)
+  -tags: Job tags or skills (array)
