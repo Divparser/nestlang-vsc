@@ -29,37 +29,44 @@ Official VS Code extension for [Nestlang](https://divparser.com/docs?p=Nestlang)
 # Schema for a product listing page
 
 products: all products on the page (array:object)
-  -name: Product name (string)
+  -name: Product name (text)
+  -url: Product page link (link)
   -price: Product price (number)
   -in_stock: Whether the product is available (boolean)
-  -images: Product image URLs (array:url)
+  -images: Product image URLs (array:link)
   -variants: Available variants (array:object)
-    -size: Size label (string)
+    -size: Size label (text)
     -available: Whether this variant is in stock (boolean)
 
 pagination: pagination info (object)
   -current_page: Current page number (number)
   -total_pages: Total number of pages (number)
-  -next_url: Next page URL (url)
+  -next_url: Next page URL (link)
 ```
 
 ## Supported Types
 
 | Type | Description |
 |---|---|
-| `string` | Any text value |
+| `text` | Visible text content (default for a field with no type and no children) |
+| `string` | Alias for `text`, kept for older schemas — prefer `text` |
+| `link` | An `<a>` element's `href`, instead of its visible text — use for any URL field |
 | `number` | Integer or decimal |
 | `boolean` | True or false |
-| `url` | A URL string |
-| `datetime` | Date/time value |
-| `datetime:Y-M-D` | Date with custom format |
+| `date` | Date/time value |
+| `date:Y-M-D` | Date with a custom format |
+| `datetime` | Alias for `date`, kept for older schemas — prefer `date` |
 | `object` | Nested object with child fields |
-| `array` | List of strings (default) |
-| `array:string` | List of strings |
+| `array` | List of objects if it has child fields, otherwise a list of text values |
+| `array:text` | List of text values |
+| `array:link` | List of links |
 | `array:number` | List of numbers |
 | `array:boolean` | List of booleans |
-| `array:url` | List of URLs |
+| `array:date` | List of dates |
 | `array:object` | List of objects with child fields |
+
+`string`, `url`, and `datetime` still work — every existing schema keeps validating and extracting
+exactly as before — the table above just reflects the names new schemas should use.
 
 ## Links
 

@@ -3,9 +3,9 @@
     "prefix": "nsl-listing",
     "body": [
       "${1:items}: ${2:all items on the page} (array:object)",
-      "  -${3:name}: ${4:Item name} (string)",
+      "  -${3:name}: ${4:Item name} (text)",
       "  -${5:price}: ${6:Item price} (number)",
-      "  -${7:url}: ${8:Item URL} (url)"
+      "  -${7:url}: ${8:Item URL} (link)"
     ],
     "description": "Nestlang listing schema"
   },
@@ -13,23 +13,23 @@
     "prefix": "nsl-detail",
     "body": [
       "${1:item}: ${2:the main item on the page} (object)",
-      "  -${3:name}: ${4:Item name} (string)",
+      "  -${3:name}: ${4:Item name} (text)",
       "  -${5:price}: ${6:Item price} (number)",
-      "  -${7:description}: ${8:Item description} (string)"
+      "  -${7:description}: ${8:Item description} (text)"
     ],
     "description": "Nestlang detail page schema"
   },
   "Field": {
     "prefix": "nsl-field",
     "body": [
-      "${1:fieldname}: ${2:description} (${3|string,number,boolean,url,datetime,array,array:object,array:string,array:number,array:url,object|})"
+      "${1:fieldname}: ${2:description} (${3|text,link,number,boolean,date,array,array:object,array:text,array:number,array:link,object|})"
     ],
     "description": "Single Nestlang field"
   },
   "Child Field": {
     "prefix": "nsl-child",
     "body": [
-      "  -${1:fieldname}: ${2:description} (${3|string,number,boolean,url,datetime,array,array:object,array:string,array:number,array:url,object|})"
+      "  -${1:fieldname}: ${2:description} (${3|text,link,number,boolean,date,array,array:object,array:text,array:number,array:link,object|})"
     ],
     "description": "Child field"
   },
@@ -39,7 +39,7 @@
       "pagination: pagination info (object)",
       "  -current_page: Current page number (number)",
       "  -total_pages: Total number of pages (number)",
-      "  -next_url: URL of the next page (url)"
+      "  -next_url: URL of the next page (link)"
     ],
     "description": "Pagination schema block"
   },
@@ -49,14 +49,14 @@
       "# ${1:Page description}",
       "",
       "${2:items}: ${3:all items on the page} (array:object)",
-      "  -${4:name}: ${5:Item name} (string)",
+      "  -${4:name}: ${5:Item name} (text)",
       "  -${6:price}: ${7:Item price} (number)",
-      "  -${8:url}: ${9:Item URL} (url)",
+      "  -${8:url}: ${9:Item URL} (link)",
       "",
       "pagination: pagination info (object)",
       "  -current_page: Current page number (number)",
       "  -total_pages: Total number of pages (number)",
-      "  -next_url: URL of the next page (url)"
+      "  -next_url: URL of the next page (link)"
     ],
     "description": "Full page Nestlang schema with pagination"
   },

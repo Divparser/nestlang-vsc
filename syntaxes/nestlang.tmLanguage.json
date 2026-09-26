@@ -17,7 +17,7 @@
       "patterns": [
         {
           "name": "support.type.nsl",
-          "match": "\\((array:object|array:string|array:number|array:boolean|array:url|array:object|array|object|string|number|boolean|url|datetime:[A-Za-z0-9\\-]+|datetime)\\)"
+          "match": "\\((array:object|array:text|array:link|array:number|array:boolean|array:date|array:datetime|array:string|array|object|text|link|number|boolean|date|datetime|string)\\)"
         }
       ]
     },

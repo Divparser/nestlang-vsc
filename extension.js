@@ -1,9 +1,13 @@
 const vscode = require('vscode');
 
+// Autocomplete only ever suggests the current preferred names — "string" and
+// "url" still parse fine (see getTypeDoc's docs map below, which keeps
+// entries for both so hovering existing usages still shows something), they
+// just aren't offered for new fields.
 const TYPES = [
-  'string', 'number', 'boolean', 'url', 'datetime',
-  'object', 'array', 'array:string', 'array:number',
-  'array:boolean', 'array:url', 'array:object'
+  'text', 'link', 'number', 'boolean', 'date',
+  'object', 'array', 'array:text', 'array:link', 'array:number',
+  'array:boolean', 'array:date', 'array:object'
 ];
 
 function activate(context) {
@@ -38,7 +42,7 @@ function activate(context) {
         const lineText = document.lineAt(position).text;
         const beforeCursor = lineText.substring(0, position.character);
 
-        if (!beforeCursor.includes('datetime:')) return;
+        if (!beforeCursor.includes('date:') && !beforeCursor.includes('datetime:')) return;
 
         const patterns = [
           { label: 'Y-M-D', detail: '2026-05-12' },
@@ -77,17 +81,23 @@ function activate(context) {
 
 function getTypeDoc(type) {
   const docs = {
-    'string': '**string** — Any text value.\n\nExample: `"Widget Pro"`',
+    'text': '**text** — Visible text content. The default when a field has no type and no children.\n\nExample: `"Widget Pro"`',
+    'string': '**string** — Alias for `text`, kept for older schemas. Prefer `text` for new fields.\n\nExample: `"Widget Pro"`',
+    'link': '**link** — An `<a>` element\'s `href`, instead of its visible text. Use this for any URL/link field.\n\nExample: `"https://example.com/product"`',
+    'url': '**url** — Older name for `link`, kept for older schemas. Prefer `link` for new fields.\n\nExample: `"https://example.com/product"`',
     'number': '**number** — Integer or decimal value.\n\nExample: `49.99`',
     'boolean': '**boolean** — True or false value.\n\nExample: `true`',
-    'url': '**url** — A URL string.\n\nExample: `"https://example.com/product"`',
-    'datetime': '**datetime** — Date and time value. Optionally format with `datetime:Y-M-D`.',
+    'date': '**date** — Date and time value. Optionally format with `date:Y-M-D`.',
+    'datetime': '**datetime** — Alias for `date`, kept for older schemas. Optionally format with `datetime:Y-M-D`.',
     'object': '**object** — A nested object with child fields defined by indented `-` fields.',
-    'array': '**array** — A list of strings by default.',
-    'array:string': '**array:string** — A list of string values.',
+    'array': '**array** — A list of objects by default (same as `array:object`) when it has child fields, otherwise a list of text values.',
+    'array:text': '**array:text** — A list of text values.',
+    'array:string': '**array:string** — Alias for `array:text`, kept for older schemas.',
+    'array:link': '**array:link** — A list of link (`href`) values.',
+    'array:url': '**array:url** — Alias for `array:link`, kept for older schemas.',
     'array:number': '**array:number** — A list of numeric values.',
     'array:boolean': '**array:boolean** — A list of boolean values.',
-    'array:url': '**array:url** — A list of URL strings.',
+    'array:date': '**array:date** — A list of date values.',
     'array:object': '**array:object** — A list of objects. Define child fields using indented `-` fields below.',
   };
   return docs[type] || null;
